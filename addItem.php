@@ -2,17 +2,18 @@
 
 include('config/app.php');
 include('fct/request.php');
+include('fct/item.php');
 
 $intitule = post("intitule") ; 
 
-if(!file_exists(FILE_NAME)){
-    file_put_contents(FILE_NAME,serialize([]));
-}
 
-$items = unserialize(file_get_contents(FILE_NAME));
-$items[] = [
+
+$items = getItems();
+
+$items[uniqid()] = [
     'checked'=>false,
     'intitule'=>$intitule];
-file_put_contents(FILE_NAME,serialize($items));
+
+saveItems($items);
 
 header('location:index.php');

@@ -1,6 +1,11 @@
 <?php 
 include('config/app.php');
 include('html/header.php');
+include('fct/item.php');
+
+if(!file_exists(FILE_NAME)){
+  file_put_contents(FILE_NAME,serialize([]));
+}
 ?>
 
 
@@ -25,25 +30,13 @@ include('html/header.php');
 
                 <!-- list --> 
                 <ul class="todo-list " data-widget="todo-list">
-                  <li>
-                    <!-- drag handle -->
-                    
-                    <!-- checkbox -->
-                    <div class="icheck-primary d-inline ml-2">
-                      <input type="checkbox" value="" name="todo1" id="todoCheck1">
-                      <label for="todoCheck1"></label>
-                    </div>
-                    <!-- todo text -->
-                    <span class="text">Design a nice theme</span>
-                    <!-- Emphasis label -->
-                    
-                    <!-- General tools such as edit or delete-->
-                    <div class="tools">
-                      <i class="fas fa-edit"></i>
-                      <i class="fas fa-trash"></i>
-                    </div>
-                  </li>
-                 
+                  
+                 <?php
+                 $items = getItems();
+                      foreach($items as $key => $item){
+                       echo displayItem($key,$item);
+                      }
+                 ?>
                   
                 </ul>
               </div>
