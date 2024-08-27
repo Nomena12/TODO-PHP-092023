@@ -15,9 +15,9 @@ include('html/header.php');
                 <form action='addItem.php' method='POST'>
                 <div class="input-group input-group-sm">
                   
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" name='intitule'>
                             <span class="input-group-append">
-                      <button type="submit" class="btn btn-info btn-flat">Go!</button>
+                      <button type="submit" class="btn btn-info btn-flat">+</button>
                             </span>
                             
                 </div>
