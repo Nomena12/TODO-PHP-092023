@@ -1,1 +1,0 @@
-a:3:{s:13:"66cf3c02c5f6d";a:2:{s:7:"checked";b:1;s:8:"intitule";s:6:"item 1";}s:13:"66cf3c08d5d37";a:2:{s:7:"checked";b:0;s:8:"intitule";s:8:"item 2.1";}s:13:"66cf3c0d8ad2f";a:2:{s:7:"checked";b:0;s:8:"intitule";s:6:"item 4";}}

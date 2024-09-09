@@ -1,12 +1,12 @@
 <?php 
 include('config/app.php');
+include('config/db.php');
+include('connexion.php');
 include('html/header.php');
 include('fct/item.php');
 include('fct/request.php');
 
-if(!file_exists(FILE_NAME)){
-  file_put_contents(FILE_NAME,serialize([]));
-}
+
 ?>
 
 
@@ -33,12 +33,15 @@ if(!file_exists(FILE_NAME)){
                 <ul class="todo-list " data-widget="todo-list">
                   
                  <?php
-                 $items = getItems();
-                      foreach($items as $key => $item){
-                       echo displayItem($key,$item);
-                      }
-                 ?>
-                  
+                
+                       // displayItem($key,$item);
+                       $query = 'SELECT * FROM todo';
+                       $stmt = $pdo->query($query);
+
+                       while($item = $stmt->fetch(PDO::FETCH_ASSOC)){
+                        echo displayItem($item);
+                       }
+                  ?>
                 </ul>
               </div>
               <!-- /.card-body -->

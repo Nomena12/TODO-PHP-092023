@@ -3,17 +3,20 @@
 include('config/app.php');
 include('fct/request.php');
 include('fct/item.php');
+include('config/db.php');
+include('connexion.php');
 
 $intitule = post("intitule") ; 
 
+$query= "INSERT INTO todo (intitule) VALUES (:intitule)" ;
+$stmt= $pdo->prepare($query);
+
+$stmt->bindParam('intitule', $intitule);
 
 
-$items = getItems();
+$stmt->execute();
 
-$items[uniqid()] = [
-    'checked'=>false,
-    'intitule'=>$intitule];
 
-saveItems($items);
+
 
 header('location:index.php');

@@ -1,12 +1,13 @@
 <?php
 
 
-function displayItem($key,$item){
-    $editItemId = get('editItem');
+function displayItem($item){
+  
+  $editItemId = get('editItem');
 
-    if($editItemId===$key){
+    if($editItemId===$item['id']){
         $html='<form action="editItem.php" method="POST">';
-        $html.='<input type="hidden" name="editItem" value="'.$key.'" >';
+        $html.='<input type="hidden" name="editItem" value="'.$item['id'].'" >';
         $html.='   <div class="input-group input-group-sm">
                   
                         <input type="text" class="form-control" name="intitule" value="'.$item['intitule'].'">
@@ -19,12 +20,13 @@ function displayItem($key,$item){
         $html.='</form>';
 
     }else{
+    
     $html = '<li class="'.($item['checked']?'done':'').' ">
                     <!-- drag handle -->
                     
                     <!-- checkbox -->
                     <div class="icheck-primary d-inline ml-2">
-                    <a href="toggleItem.php?item='.$key.' ">';
+                    <a href="toggleItem.php?item='.$item['id'].' ">';
 
                 if($item['checked']){
                   $html.=   '<i class="far fa-check-square"></i>'; 
@@ -38,23 +40,16 @@ function displayItem($key,$item){
                     
                     <!-- General tools such as edit or delete-->
                     <div class="tools">
-                      <a href="index.php?editItem='.$key.'"> 
+                      <a href="index.php?editItem='.$item['id'].'"> 
                             <i class="fas fa-edit"></i>
                       </a>
-                      <a href="deleteItem.php?item='.$key.'">
+                      <a href="deleteItem.php?item='.$item['id'].'">
                             <i class="fas fa-trash"></i>
                       </a>
                     </div>
                   </li> ' ;
-            }
+              }
                   return $html;
             
 }
 
-function getItems(){
-    return unserialize(file_get_contents(FILE_NAME));
-}
-
-function saveItems($items){
-    file_put_contents(FILE_NAME,serialize($items));
-}
